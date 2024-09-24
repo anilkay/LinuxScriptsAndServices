@@ -1,0 +1,35 @@
+  
+  364  mkdir scripts
+  367  touch foto_capture.sh
+  368  sudo chmod +x foto_capture
+  369  sudo chmod +x foto_capture.sh 
+  370  sudo nano foto_capture.sh 
+  372  mkdir capture_photos
+  380  ./foto_capture.sh 
+  384  sudo nano /etc/systemd/system/capture_photos
+  390  sudo nano /etc/systemd/system/capture-photo.timer
+  391  sudo systemctl daemon-reload
+  392  sudo systemctl enable --now capture-photo.timer
+  393  sudo systemctl status capture-photo.timer 
+  401  sudo mv capture_photos capture_photo
+  402  sudo mv capture-photo.timer capture_photo.timer
+  403  sudo mv  capture_photo capture_photo.service
+  404  sudo nano capture_photo.timer 
+  406  sudo systemctl enable --now capture_photo.timer 
+  407  ystemctl status capture_photo.timer
+  408  systemctl status capture_photo.timer
+  409  sudo systemd-analyze capture_photo.service
+  410  sudo systemd-analyze verify  capture_photo.service
+  411  less  /home/pi/scripts/capture_photo.sh
+  414  sudo mv foto_capture.sh capture_photo.sh
+  416  sudo nano /etc/systemd/system/capture_photo.timer 
+  418  sudo systemd-analyze verify  capture_photo.timer
+  420  sudo systemctl daemon-reload 
+  422  sudo systemctl list-timers 
+  424  sudo systemctl status capture_photo.timer 
+  425  sudo systemctl status capture_photo.service 
+  431  sudo journalctl -xeu capture_photos.timer
+  433  sudo nano /etc/systemd/system
+  434  sudo nano /etc/systemd/system/capture_photo.service 
+  437  sudo systemctl list-timers
+ 

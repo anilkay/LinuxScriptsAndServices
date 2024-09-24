@@ -1,0 +1,13 @@
+[Unit]
+Description=Capture Photo with Timestamp
+
+[Service]
+User=pi
+Environment="SAVE_DIR=/home/pi/capture_photos"
+ExecStart=/home/pi/scripts/capture_photo.sh
+Restart=on-failure     
+RestartSec=10s               
+StartLimitBurst=2            
+[Install]
+WantedBy=multi-user.target
+
