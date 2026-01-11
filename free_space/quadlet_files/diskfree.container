@@ -1,0 +1,12 @@
+[Unit]
+Description=Disk free space checker
+
+[Container]
+Image=localhost/diskfree:1.0.0
+
+[Service]
+Type=oneshot
+StandardOutput=journal
+StandardError=journal
+[Install]
+WantedBy=default.target

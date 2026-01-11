@@ -1,0 +1,24 @@
+[Unit]
+Wants=podman-user-wait-network-online.service
+After=podman-user-wait-network-online.service
+Description=Disk free space checker
+SourcePath=/home/pi/.config/containers/systemd/diskfree.container
+RequiresMountsFor=%t/containers
+
+[X-Container]
+Image=localhost/diskfree:1.0.0
+
+[Service]
+Type=oneshot
+StandardOutput=journal
+StandardError=journal
+Environment=PODMAN_SYSTEMD_UNIT=%n
+KillMode=mixed
+ExecStop=/nix/store/igqrplxnm8y6l83nxk35nznp9cz0m63n-podman-5.7.0/bin/podman rm -v -f -i systemd-%N
+ExecStopPost=-/nix/store/igqrplxnm8y6l83nxk35nznp9cz0m63n-podman-5.7.0/bin/podman rm -v -f -i systemd-%N
+Delegate=yes
+SyslogIdentifier=%N
+ExecStart=/nix/store/igqrplxnm8y6l83nxk35nznp9cz0m63n-podman-5.7.0/bin/podman run --name systemd-%N --replace --rm --cgroups=split localhost/diskfree:1.0.0
+
+[Install]
+WantedBy=default.target

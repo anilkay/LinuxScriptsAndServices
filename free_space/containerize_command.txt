@@ -1,0 +1,2 @@
+ dotnet publish -c Release -t:PublishContainer -p:ContainerImageName=diskfree -p:ContainerImageTag=1.0.0
+ quadlet -dryrun -user
